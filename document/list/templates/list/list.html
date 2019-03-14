@@ -1,0 +1,49 @@
+{% extends 'list/base.html' %}
+
+{% block body %}
+
+<div class="add_buttons">
+
+  <div class="button-group">
+    <a href="{% url 'add_document' %}" class="btn btn-primary btn-sm btn-pad" role="button">Thêm khóa luận</a>
+  </div>
+
+</div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th >STT</th>
+        <th style="width:20%">Họ và tên</th>
+        <th style="width:20%">Ngày sinh</th>
+        <th>Lớp</th>
+        <th>Đề tài</th>
+        <th style="width:30%">Cán bộ hướng dẫn</th>
+        <th style="width:20%">Phản biện</th>
+      </tr>
+    </thead>
+
+   <tbody>
+     {% for document in documents %}
+
+         <tr>
+           <td>{{ document.id }}</td>
+           <td>{{ document.name }} </td>
+           <td>{{ document.birth_date }}</td>
+           <td>{{ document.grade }}</td>
+           <td>{{ document.topic }}</td>
+           <td>{{ document.tutor }}</td>
+           <td>{{ document.reviewer }}</td>
+
+           <td>
+             <a href="{% url 'edit_info' document.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+             <a href="{% url 'delete_document' document.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
+           </td>
+
+         </tr>
+
+     {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

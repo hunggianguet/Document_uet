@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+
+    <style type="text/css">
+        th {
+          vertical-align: middle;
+        }
+    </style>
+
+  </head>
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}"/>
+
+
+  <body>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'display_document' %}">Tài liệu <img src="{% static "images/file_icon.png" %}" width="30px" height="30px"><span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Search" name='search'>
+    </form>
+  </div>
+</nav>
+
+    <br>
+    <div class="container">
+
+      {% block body %}
+
+
+      {% endblock%}
+
+    </div>
+
+  </body>
+</html>
