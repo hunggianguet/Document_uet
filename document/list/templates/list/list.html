@@ -5,7 +5,7 @@
 <div class="add_buttons">
 
   <div class="button-group">
-    <a href="{% url 'add_document' %}" class="btn btn-primary btn-sm btn-pad" role="button">Thêm khóa luận</a>
+    <a href="{% url 'add_student' %}" class="btn btn-primary btn-sm btn-pad" role="button">Thêm khóa luận</a>
   </div>
 
 </div>
@@ -24,20 +24,20 @@
     </thead>
 
    <tbody>
-     {% for document in documents %}
+     {% for student in students %}
 
          <tr>
-           <td>{{ document.id }}</td>
-           <td>{{ document.name }} </td>
-           <td>{{ document.birth_date }}</td>
-           <td>{{ document.grade }}</td>
-           <td>{{ document.topic }}</td>
-           <td>{{ document.tutor }}</td>
-           <td>{{ document.reviewer }}</td>
+           <td>{{ student.id }}</td>
+           <td>{{ student.name }} </td>
+           <td>{{ student.birth_date }}</td>
+           <td>{{ student.grade }}</td>
+           <td>{{ student.topic }}</td>
+           <td>{{ student.tutor }}</td>
+           <td>{{ student.reviewer }}</td>
 
            <td>
-             <a href="{% url 'edit_info' document.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
-             <a href="{% url 'delete_document' document.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
+             <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+             <a href="{% url 'delete_student' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
            </td>
 
          </tr>

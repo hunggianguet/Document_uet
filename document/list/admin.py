@@ -3,6 +3,6 @@ from import_export.admin import ImportExportModelAdmin
 from .models import *
 # Register your models here.
 
-@admin.register(Document)
-class Document_Admin(ImportExportModelAdmin):
+@admin.register(Student)
+class Student_Admin(ImportExportModelAdmin):
     pass

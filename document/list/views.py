@@ -5,48 +5,48 @@ from django.db.models import Q
 from .forms import *
 # Create your views here.
 
-def display_document(request):
-        documents = Document.objects.all()
+def display_student(request):
+        students = Student.objects.all()
         key_word=''
 
         if 'search' in request.GET:
             key_word = request.GET['search']
-            documents = documents.filter(Q(name__icontains=key_word)|Q(birth_date__icontains=key_word)|Q(topic__icontains=key_word)|Q(grade__icontains=key_word)|Q(tutor__icontains=key_word)|Q(reviewer__icontains=key_word))
+            students = students.filter(Q(name__icontains=key_word)|Q(birth_date__icontains=key_word)|Q(topic__icontains=key_word)|Q(grade__icontains=key_word)|Q(tutor__icontains=key_word)|Q(reviewer__icontains=key_word))
 
         context = {
-            'documents': documents,
+            'students': students,
             'key_word': key_word
             }
         return render(request, 'list/list.html', context)
 
-def add_document(request):
+def add_student(request):
     if request.method == "POST":
-        form = DocumentForm(request.POST)
+        form = StudentForm(request.POST)
 
         if form.is_valid():
             form.save()
-            return redirect('display_document')
+            return redirect('display_student')
 
     else:
-        form = DocumentForm()
-        return render(request, 'list/add_document.html', {'form' : form})
+        form = StudentForm()
+        return render(request, 'list/add_student.html', {'form' : form})
 
 def edit_info(request, pk):
-    document = get_object_or_404(Document, pk=pk)
+    student = get_object_or_404(Student, pk=pk)
 
     if request.method == "POST":
-        form = DocumentForm(request.POST, instance=document)
+        form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
-            return redirect('display_document')
+            return redirect('display_student')
     else:
-        form = DocumentForm(instance=document)
+        form = StudentForm(instance=student)
 
         return render(request, 'list/edit_info.html', {'form' : form})
 
-def delete_document(request, pk):
-    Document.objects.filter(id=pk).delete()
+def delete_student(request, pk):
+    Student.objects.filter(id=pk).delete()
 
-    documents = Document.objects.all()
+    students = Student.objects.all()
 
-    return redirect('display_document')
+    return redirect('display_student')
