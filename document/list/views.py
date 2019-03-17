@@ -6,18 +6,11 @@ from .forms import *
 # Create your views here.
 
 def display_student(request):
-        students = Student.objects.all()
-        key_word=''
-
-        if 'search' in request.GET:
-            key_word = request.GET['search']
-            students = students.filter(Q(name__icontains=key_word)|Q(birth_date__icontains=key_word)|Q(topic__icontains=key_word)|Q(grade__icontains=key_word)|Q(tutor__icontains=key_word)|Q(reviewer__icontains=key_word))
-
-        context = {
-            'students': students,
-            'key_word': key_word
-            }
-        return render(request, 'list/list.html', context)
+    query = request.GET.get("q")
+    students = Student.objects.all()
+    if query  :
+        students = Student.objects.filter(Q(id__icontains=query)|Q(topic__icontains=query)|Q(name__icontains=query))
+    return render(request, 'list/list.html', {'students':students})
 
 def add_student(request):
     if request.method == "POST":
