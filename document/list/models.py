@@ -11,3 +11,5 @@ class Student(models.Model):
     tutor = models.CharField(max_length=30, null=True)
     reviewer = models.CharField(max_length=30, null=True)
     work_unit = models.CharField(max_length=30, null=True)
+    pdf = models.FileField(upload_to='media')
+

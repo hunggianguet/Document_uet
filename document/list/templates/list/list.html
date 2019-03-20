@@ -9,7 +9,7 @@
           <input name="q" value="{{request.GET.get.q}}" placeholder="search">
           <button class="btn btn-outline-warning" type="submit">Search</button>
     </form>
-    <a href="{% url 'add_student' %}" class="btn btn-primary btn-sm btn-pad" role="button">Thêm khóa luận</a>
+    <a href="list/upload_fl" class="btn btn-primary btn-sm btn-pad" role="button">Thêm khóa luận</a>
   </div>
 
 </div>
@@ -37,7 +37,10 @@
            <td>{{ student.grade }}</td>
            <td>{{ student.topic }}</td>
            <td>{{ student.tutor }}</td>
-           <td>{{ student.reviewer }}</td>
+           <td> <a href="{{ student.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+              View PDF
+            </a></td>
+
 
            <td>
              <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
