@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.db.models import Q
 from .forms import *
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 def display_student(request):
@@ -43,3 +44,21 @@ def delete_student(request, pk):
     students = Student.objects.all()
 
     return redirect('display_student')
+
+def view_detail(request, pk):
+    return render(request, 'list/upload_fl.html',{
+        'students': students
+    })
+
+
+def upload_fl(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('display_student')
+    else:
+        form = StudentForm()
+    return render(request, 'list/add_student.html', {
+        'form': form
+    })
