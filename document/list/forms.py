@@ -1,7 +1,13 @@
 from django import forms
 from .models import *
 
-class DocumentForm(forms.ModelForm):
+class StudentForm(forms.ModelForm):
         class Meta:
-            model = Document
-            fields = ('id', 'name', 'last_name', 'birth_date', 'grade', 'topic', 'tutor', 'reviewer')
+            model = Student
+            fields = ('id', 'id_student', 'name', 'birth_date', 'academic_year', 'topic', 'tutor', 'reviewer', 'work_unit','pdf')
+
+
+class PdfForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('pdf','name')
