@@ -7,14 +7,10 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 def display_student(request):
-    students = Student.objects.all()
-    return render(request, 'list/searchpage.html')
-
-def search(request):
     query = request.GET.get("q")
     students = Student.objects.all()
     if query  :
-        students = Student.objects.filter(Q(id__icontains=query)|Q(topic__icontains=query)|Q(name__icontains=query))
+        students = Student.objects.filter(Q(id_student__icontains=query)|Q(topic__icontains=query)|Q(name__icontains=query))
     return render(request, 'list/list.html', {'students':students})
 
 def add_student(request):
