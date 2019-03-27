@@ -11,6 +11,12 @@ def display_student(request):
     students = Student.objects.all()
     if query  :
         students = Student.objects.filter(Q(id_student__icontains=query)|Q(topic__icontains=query)|Q(name__icontains=query))
+        return render(request, 'list/list.html', {'students':students})
+    else:
+        return render(request, 'list/searchpage.html', {'students':students})
+
+def view(request):
+    students = Student.objects.all()
     return render(request, 'list/list.html', {'students':students})
 
 def add_student(request):
