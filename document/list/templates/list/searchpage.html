@@ -4,11 +4,10 @@
 
 <div class="add_buttons">
 
-  <div class="button-group">
-    <form method="GET" action =''>
+  <form method="GET" action =''>
           <input name="q" value="{{request.GET.get.q}}" placeholder="search">
-          <a href="{% url 'search' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" >Search</a>
-    </form>
+          <button class="btn btn-primary btn-sm" type="submit">Search</button>
+  </form>
 
 </div>
 
