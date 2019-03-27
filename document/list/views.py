@@ -7,6 +7,10 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 def display_student(request):
+    students = Student.objects.all()
+    return render(request, 'list/searchpage.html')
+
+def search(request):
     query = request.GET.get("q")
     students = Student.objects.all()
     if query  :
