@@ -11,12 +11,15 @@ def display_student(request):
     query = request.GET.get("q")
     students = Student.objects.all()
     if query  :
-        students = Student.objects.filter(Q(id_student__icontains=query)|Q(topic__icontains=query)|Q(name__icontains=query))
-        paginator = Paginator(students, 10)
-
-        page = request.GET.get('page')
-        students = paginator.get_page(page)
-        return render(request, 'list/list.html', {'students':students})
+        if request.GET.get("tieude")=="hoten":
+            students = Student.objects.filter(name__icontains=query)
+            return render(request, 'list/list.html', {'students':students})
+        if request.GET.get("tieude")=="detai":
+            students = Student.objects.filter(topic__icontains=query)
+            return render(request, 'list/list.html', {'students':students})
+        if request.GET.get("tieude")=="masv":
+            students = Student.objects.filter(id_student__icontains=query)
+            return render(request, 'list/list.html', {'students':students})
     else:
         return render(request, 'list/searchpage.html', {'students':students})
 

@@ -2,14 +2,14 @@
 
 {% block body %}
 
-<div class="add_buttons">
-
-  <div class="button-group">
-    <form method="GET" action =''>
-          <input name="q" value="{{request.GET.get.q}}" placeholder="search">
-          <button class="btn btn-outline-warning" type="submit">Search</button>
-    </form>
-
-</div>
+<form method="get" >
+<input type="text" name="q" id="id_q" value="{{ query }}" />
+<select name="tieude">
+    <option value="hoten">Tìm theo họ tên</option>
+    <option value="detai">Tìm theo đề tài</option>
+    <option value="masv">Tìm theo Mã sv</option>
+</select>
+<button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+</form>
 
 {% endblock %}
