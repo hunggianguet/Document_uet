@@ -39,22 +39,40 @@
   </table>
 
 
-  <div class="pagination">
-    <span class="step-links">
+<div>
+    <ul class="pagination pull-right">
+
         {% if students.has_previous %}
-            <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
-            <a href="?page={{ students.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        <li><a href="?page={{ students.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><-Previous</a></li>
+        {% else %}
+        <li class="disabled"><span></span></li>
         {% endif %}
 
-        <span class="current">
-            Page {{ students.number }} of {{ students.paginator.num_pages }}.
-        </span>
+        {% if students.number > 5 %}
+        <li><a href="?page=1"><p>&nbsp;1</p></a></li>
+        {% endif %}
+
+        {% for i in students.paginator.page_range %}
+        {% if i > students.number|add:"-5" %}
+            {% if i < students.number|add:"5" %}
+                {% if students.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+        <li><a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&nbsp;{{ i }}&nbsp;</a></li>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        {% if students.number < students.paginator.num_pages|add:"-5" %}
+        <li><a href="?page={{ students.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i>{{ students.paginator.num_pages }}</i></a></li>
+        {% endif %}
 
         {% if students.has_next %}
-            <a href="?page={{ students.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
-            <a href="?page={{ students.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+        <li><a href="?page={{ students.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&nbsp;Next-></a></li>
+        {% else %}
+        <li class="disabled"><span></span></li>
         {% endif %}
-    </span>
+    </ul>
 </div>
-
 {% endblock %}
