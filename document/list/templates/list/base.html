@@ -10,13 +10,6 @@
 
         }
 
-        .navbar {
-        margin-bottom: 20px;
-        }
-
-        th {
-          vertical-align: middle;
-        }
         background-color:rgb(236,248,236);
     </style>
 
@@ -37,23 +30,13 @@
         <a class="nav-link" href="{% url 'display_student' %}">Trang chủ  <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'view' %}" style="padding-bottom:10px">Danh sách</a>
+        <a class="nav-link" href="{% url 'view' %}" >Danh sách</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'upload_fl' %}" style="padding-bottom:10px">Thêm tài liệu</a>
+        <a class="nav-link" href="{% url 'upload_fl' %}">Thêm tài liệu</a>
       </li>
     </ul>
-
   </div>
-  <form method="get" >
-   <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-   <select name="tieude">
-       <option value="hoten">Tìm theo họ tên</option>
-       <option value="detai">Tìm theo đề tài</option>
-       <option value="masv">Tìm theo Mã sv</option>
-   </select>
-   <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
-   </form>
   </div>
 </nav>
 
