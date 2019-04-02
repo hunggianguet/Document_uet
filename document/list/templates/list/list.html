@@ -1,9 +1,11 @@
 {% extends 'list/base.html' %}
 
 {% block body %}
-
   <table class="table table-hover">
     <thead>
+    <style>
+    </style>
+
       <tr>
         <th>STT</th>
         <th>Họ và tên</th>
@@ -14,6 +16,16 @@
     </thead>
 
    <tbody>
+
+   <form class = "searchbox2" method="get" >
+    <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+    <select name="tieude">
+        <option value="hoten">Tìm theo họ tên</option>
+        <option value="detai">Tìm theo đề tài</option>
+        <option value="masv">Tìm theo Mã sv</option>
+    </select>
+    <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+    </form>
      {% for student in students %}
 
          <tr>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>List</title>
+    <title>Tra cứu khoá luận </title>
 
-    <style type="text/css">
+    <style>
         body {
-        padding-bottom: 20px;
+            padding-bottom: 20px;
+            background-color:rgb(236,248,236);
+
         }
 
         .navbar {
@@ -15,12 +17,13 @@
         th {
           vertical-align: middle;
         }
+        background-color:rgb(236,248,236);
     </style>
 
   </head>
 
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/mystyle.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}"/>
 
 
@@ -31,7 +34,7 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'display_student' %}">Tài liệu <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'display_student' %}">Trang chủ  <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'view' %}" style="padding-bottom:10px">Danh sách</a>
@@ -40,15 +43,7 @@
         <a class="nav-link" href="{% url 'upload_fl' %}" style="padding-bottom:10px">Thêm tài liệu</a>
       </li>
     </ul>
-    <form method="get" >
-    <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-    <select name="tieude">
-        <option value="hoten">Tìm theo họ tên</option>
-        <option value="detai">Tìm theo đề tài</option>
-        <option value="masv">Tìm theo Mã sv</option>
-    </select>
-    <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
-    </form>
+
   </div>
   </div>
 </nav>

@@ -1,16 +1,37 @@
 {% extends 'list/base.html' %}
 
 {% block body %}
+<head>
+    <style>
+body{
+    background-color: rgb(236,248,236);
 
-<form method="get" >
+}
+.searchbox{
+    -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+    .filter-list{
+        top: 600%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    }
+    </style>
+
+</head>
+<h1 class="home-title">Hệ thống tra cứu khoá luận </h1>
+      <h2 class="home-title">Trường ĐH Công Nghệ</h2>
+
+<form class = "input" method="get" >
 <div class="input-group">
-  <select name="tieude">
+  <select class= "filter-list" name="tieude">
       <option value="hoten">Tìm theo họ tên</option>
       <option value="detai">Tìm theo đề tài</option>
       <option value="masv">Tìm theo Mã sv</option>
   </select>
-  <input type="text" class="form-control" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-  <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+  <input class = "searchbox" type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+  <button class="searchButton" type="submit">Tìm</button>
 
 </div>
 </form>
