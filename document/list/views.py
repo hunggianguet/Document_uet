@@ -10,33 +10,101 @@ from django.core.files.storage import FileSystemStorage
 def display_student(request):
     query = request.GET.get("q")
     students = Student.objects.all()
+    tieude=request.GET.get("tieude")
+
     if query  :
-        if request.GET.get("tieude")=="hoten":
+        if tieude=="hoten":
             students = Student.objects.filter(name__icontains=query)
-        if request.GET.get("tieude")=="detai":
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
+        if tieude=="detai":
             students = Student.objects.filter(topic__icontains=query)
-        if request.GET.get("tieude")=="masv":
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
+        if tieude=="masv":
             students = Student.objects.filter(id_student__icontains=query)
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
         return render(request, 'list/list.html', {'students':students})
     else:
         return render(request, 'list/searchpage.html', {'students':students})
 
 def view(request):
+    query = request.GET.get("q")
     students = Student.objects.all()
+    tieude = request.GET.get("tieude")
     paginator = Paginator(students, 20)  # Show 20 students per page
-
     page = request.GET.get('page')
-    students= paginator.get_page(page)
+    students = paginator.get_page(page)
 
-    return render(request, 'list/list.html', {'students':students})
+    if query:
+        if tieude == "hoten":
+            students = Student.objects.filter(name__icontains=query)
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
+        if tieude == "detai":
+            students = Student.objects.filter(topic__icontains=query)
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
+        if tieude == "masv":
+            students = Student.objects.filter(id_student__icontains=query)
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
+    return render(request, 'list/list.html', {'students': students})
 
 def kltn(request):
+    query = request.GET.get("q")
     students = Student.objects.filter(topic_type__icontains='kltn')
-    return render(request, 'list/list.html', {'students':students})
+    tieude = request.GET.get("tieude")
+    paginator = Paginator(students, 20)  # Show 20 students per page
+    page = request.GET.get('page')
+    students = paginator.get_page(page)
+    if tieude == "hoten":
+        students = Student.objects.filter(name__icontains=query)&Student.objects.filter(topic_type__icontains='kltn')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    if tieude == "detai":
+        students = Student.objects.filter(topic__icontains=query)&Student.objects.filter(topic_type__icontains='kltn')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    if tieude == "masv":
+        students = Student.objects.filter(id_student__icontains=query)&Student.objects.filter(topic_type__icontains='kltn')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    return render(request, 'list/list.html', {'students': students})
 
 def nckh(request):
     students = Student.objects.filter(topic_type__icontains='nckh')
-    return render(request, 'list/list.html', {'students':students})
+    query = request.GET.get("q")
+    tieude = request.GET.get("tieude")
+    paginator = Paginator(students, 20)  # Show 20 students per page
+    page = request.GET.get('page')
+    students = paginator.get_page(page)
+    if tieude == "hoten":
+        students = Student.objects.filter(name__icontains=query)&Student.objects.filter(topic_type__icontains='nckh')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    if tieude == "detai":
+        students = Student.objects.filter(topic__icontains=query)&Student.objects.filter(topic_type__icontains='nckh')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    if tieude == "masv":
+        students = Student.objects.filter(id_student__icontains=query)&Student.objects.filter(topic_type__icontains='nckh')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
+    return render(request, 'list/list.html', {'students': students})
 
 def add_student(request):
     if request.method == "POST":

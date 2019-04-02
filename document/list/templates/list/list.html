@@ -2,15 +2,19 @@
 
 {% block body %}
 
-<form class = "searchbox2" method="get" >
- <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
- <select name="tieude">
-     <option value="hoten">Tìm theo họ tên</option>
-     <option value="detai">Tìm theo đề tài</option>
-     <option value="masv">Tìm theo Mã sv</option>
- </select>
- <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
- </form>
+<form class = "input" method="get" >
+  <div class="input-group">
+    <select name="tieude">
+        <option value="hoten">Tìm theo họ tên</option>
+        <option value="detai">Tìm theo đề tài</option>
+        <option value="masv">Tìm theo Mã sv</option>
+    </select>
+    <input type="text" class="form-control" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+    <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+
+  </div>
+</form>
+
 
  <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > KLTN</a>
  <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > NCKH</a>
@@ -59,38 +63,35 @@
 
 
 <div>
-    <ul class="pagination pull-right">
+    <ul class="pagination justify-content-center" >
 
         {% if students.has_previous %}
-        <li><a href="?page={{ students.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><-Previous</a></li>
-        {% else %}
-        <li class="disabled"><span></span></li>
+        <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}"><-Previous</a></li>
         {% endif %}
 
         {% if students.number > 5 %}
-        <li><a href="?page=1"><p>&nbsp;1</p></a></li>
+        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
         {% endif %}
 
         {% for i in students.paginator.page_range %}
         {% if i > students.number|add:"-5" %}
             {% if i < students.number|add:"5" %}
                 {% if students.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        <li class="page-item active"><a class="page-link"<span>{{ i }} </span></li></a></li>
                 {% else %}
-        <li><a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&nbsp;{{ i }}&nbsp;</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}">&nbsp;{{ i }}&nbsp;</a></li>
                 {% endif %}
             {% endif %}
         {% endif %}
         {% endfor %}
 
         {% if students.number < students.paginator.num_pages|add:"-5" %}
-        <li><a href="?page={{ students.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i>{{ students.paginator.num_pages }}</i></a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ students.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}"><i>{{ students.paginator.num_pages }}</i></a></li>
         {% endif %}
 
         {% if students.has_next %}
-        <li><a href="?page={{ students.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&nbsp;Next-></a></li>
-        {% else %}
-        <li class="disabled"><span></span></li>
+        <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}">&nbsp;Next-></a></li>
+
         {% endif %}
     </ul>
 </div>
