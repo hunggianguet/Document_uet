@@ -1,6 +1,20 @@
 {% extends 'list/base.html' %}
 
 {% block body %}
+
+<form class = "searchbox2" method="get" >
+ <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+ <select name="tieude">
+     <option value="hoten">Tìm theo họ tên</option>
+     <option value="detai">Tìm theo đề tài</option>
+     <option value="masv">Tìm theo Mã sv</option>
+ </select>
+ <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+ </form>
+
+ <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > KLTN</a>
+ <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > NCKH</a>
+
   <table class="table table-hover">
     <thead>
     <style>
@@ -10,6 +24,7 @@
         <th>STT</th>
         <th>Họ và tên</th>
         <th>Đề tài</th>
+        <th>Loại</th>
         <th>Cán bộ hướng dẫn</th>
         <th>Phản biện</th>
       </tr>
@@ -17,21 +32,13 @@
 
    <tbody>
 
-   <form class = "searchbox2" method="get" >
-    <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-    <select name="tieude">
-        <option value="hoten">Tìm theo họ tên</option>
-        <option value="detai">Tìm theo đề tài</option>
-        <option value="masv">Tìm theo Mã sv</option>
-    </select>
-    <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
-    </form>
      {% for student in students %}
 
          <tr>
            <td>{{ student.id }}</td>
            <td>{{ student.name }} </td>
-           <td>{{ student.topic }}
+           <td>{{ student.topic }}</td>
+           <td>{{student.topic_type}}</td>
            <td>{{ student.tutor }}</td>
            <td>{{ student.reviewer }}</td>
 

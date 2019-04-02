@@ -30,6 +30,14 @@ def view(request):
 
     return render(request, 'list/list.html', {'students':students})
 
+def kltn(request):
+    students = Student.objects.filter(topic_type__icontains='kltn')
+    return render(request, 'list/list.html', {'students':students})
+
+def nckh(request):
+    students = Student.objects.filter(topic_type__icontains='nckh')
+    return render(request, 'list/list.html', {'students':students})
+
 def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
