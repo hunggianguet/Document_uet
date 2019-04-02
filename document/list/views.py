@@ -13,13 +13,11 @@ def display_student(request):
     if query  :
         if request.GET.get("tieude")=="hoten":
             students = Student.objects.filter(name__icontains=query)
-            return render(request, 'list/list.html', {'students':students})
         if request.GET.get("tieude")=="detai":
             students = Student.objects.filter(topic__icontains=query)
-            return render(request, 'list/list.html', {'students':students})
         if request.GET.get("tieude")=="masv":
             students = Student.objects.filter(id_student__icontains=query)
-            return render(request, 'list/list.html', {'students':students})
+        return render(request, 'list/list.html', {'students':students})
     else:
         return render(request, 'list/searchpage.html', {'students':students})
 
