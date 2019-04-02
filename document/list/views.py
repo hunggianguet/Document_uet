@@ -31,11 +31,11 @@ def view(request):
     return render(request, 'list/list.html', {'students':students})
 
 def kltn(request):
-    students = Student.objects.filter(topic_type__icontains='kltn')
+    students = Student.objects.filter(topic_type__icontains='KLTN')
     return render(request, 'list/list.html', {'students':students})
 
 def nckh(request):
-    students = Student.objects.filter(topic_type__icontains='nckh')
+    students = Student.objects.filter(topic_type__icontains='NCKH')
     return render(request, 'list/list.html', {'students':students})
 
 def add_student(request):

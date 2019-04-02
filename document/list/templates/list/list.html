@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form class = "searchbox2" method="get" >
+<form method="get" >
  <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
  <select name="tieude">
      <option value="hoten">Tìm theo họ tên</option>
@@ -12,8 +12,8 @@
  <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
  </form>
 
- <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > KLTN</a>
- <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > NCKH</a>
+ <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Khóa luận tốt nghiệp</a>
+ <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Nghiên cứu khoa học</a>
 
   <table class="table table-hover">
     <thead>

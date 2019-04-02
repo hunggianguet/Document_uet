@@ -45,6 +45,15 @@
     </ul>
 
   </div>
+  <form method="get" >
+   <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+   <select name="tieude">
+       <option value="hoten">Tìm theo họ tên</option>
+       <option value="detai">Tìm theo đề tài</option>
+       <option value="masv">Tìm theo Mã sv</option>
+   </select>
+   <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
+   </form>
   </div>
 </nav>
 
