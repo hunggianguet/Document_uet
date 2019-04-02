@@ -14,7 +14,7 @@ class StudentForm(forms.ModelForm):
                 "tutor":"Cán bộ hướng dẫn",
                 "file":"Tài liệu"
             }
-            fields = ('id', 'id_student', 'name', 'birth_date', 'academic_year', 'topic', 'tutor','kltn','nckh','file')
+            fields = ('id', 'id_student', 'name', 'birth_date', 'academic_year', 'topic', 'tutor','file','topic_type')
 
 
 class PdfForm(forms.ModelForm):
