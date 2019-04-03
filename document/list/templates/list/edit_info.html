@@ -9,8 +9,9 @@
    </style>
 
 <div class="container col-md-10 edit_box" >
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    
 
     <h3><u>Editing info</u></h3>
     {% for field in form %}
