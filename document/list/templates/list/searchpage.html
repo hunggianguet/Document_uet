@@ -16,13 +16,13 @@ body{
 <form class = "input" method="get" >
   <div class="input-group">
     <select name="tieude">
+        <option value="tatca">Tìm theo tất cả</option>
         <option value="hoten">Tìm theo họ tên</option>
         <option value="detai">Tìm theo đề tài</option>
         <option value="masv">Tìm theo Mã sv</option>
     </select>
     <input type="text" class="form-control" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-    <button class="btn btn-primary btn-sm" type="submit">Tìm Kiếm</button>
-
+    <button class="btn btn-success btn-sm" type="submit">Tìm Kiếm</button>
   </div>
 </form>
 

@@ -13,6 +13,11 @@ def display_student(request):
     tieude=request.GET.get("tieude")
 
     if query  :
+        if tieude=="tatca":
+            students = Student.objects.filter(Q(name__icontains=query)|Q(topic__icontains=query)|Q(id_student__icontains=query))
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
         if tieude=="hoten":
             students = Student.objects.filter(name__icontains=query)
             paginator = Paginator(students, 20)  # Show 20 students per page
