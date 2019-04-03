@@ -10,13 +10,6 @@
 
         }
 
-        .navbar {
-        margin-bottom: 20px;
-        }
-
-        th {
-          vertical-align: middle;
-        }
         background-color:rgb(236,248,236);
     </style>
 
@@ -37,13 +30,12 @@
         <a class="nav-link" href="{% url 'display_student' %}">Trang chủ  <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'view' %}" style="padding-bottom:10px">Danh sách</a>
+        <a class="nav-link" href="{% url 'view' %}" >Danh sách</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'upload_fl' %}" style="padding-bottom:10px">Thêm tài liệu</a>
+        <a class="nav-link" href="{% url 'upload_fl' %}">Thêm tài liệu</a>
       </li>
     </ul>
-
   </div>
   </div>
 </nav>

@@ -9,8 +9,8 @@ class Student(models.Model):
     academic_year = models.CharField(max_length=300, null=True)
     topic = models.CharField(max_length=100, null=True)
     TOPIC_TYPE = (
-                ('kltn','khoa luan tot nghiep'),
-                ('nckh','nghien cuu khoa hoc')
+                ('KLTN','Khóa luận tốt nghiệp'),
+                ('NCKH','Nghiên cứu khoa học')
     )
     topic_type=models.CharField(max_length=4,null=True,choices=TOPIC_TYPE)
     tutor = models.CharField(max_length=300, null=True)
