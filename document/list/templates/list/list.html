@@ -1,6 +1,12 @@
 {% extends 'list/base.html' %}
 
 {% block body %}
+    <style>
+        body{
+            background-color: rgb(236,248,236);
+
+            }
+    </style>
 
 <form class = "input" method="get" >
   <div class="input-group">
@@ -15,14 +21,13 @@
   </div>
 </form>
 
-
- <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > KLTN</a>
- <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > NCKH</a>
-
+<br>
+ <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Khóa Luận Tốt Nghiệp</a>
+ <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Nghiên Cứu Khoa Học</a>
+<br>
+    <br>
   <table class="table table-hover">
     <thead>
-    <style>
-    </style>
 
       <tr>
         <th>STT</th>
@@ -31,6 +36,9 @@
         <th>Loại</th>
         <th>Cán bộ hướng dẫn</th>
         <th>Phản biện</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -47,10 +55,11 @@
            <td>{{ student.reviewer }}</td>
 
            <td>
-             <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+               <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+           </td>
+           <td>
              <a href="{% url 'delete_student' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
            </td>
-
            {% if student.file %}
              <td><a href="{{ student.file.url }}" class="btn btn-primary btn-sm" target="_blank">
                 View</a></td>

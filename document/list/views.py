@@ -129,7 +129,7 @@ def edit_info(request, pk):
     else:
         form = StudentForm(instance=student)
 
-        return render(request, 'list/edit_info.html', {'form' : form})
+    return render(request, 'list/edit_info.html', {'form' : form})
 
 def delete_student(request, pk):
     Student.objects.filter(id=pk).delete()
