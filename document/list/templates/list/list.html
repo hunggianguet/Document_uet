@@ -9,16 +9,15 @@
     </style>
 
 <form class = "input" method="get" >
-  <div class="input-group">
+
     <select name="tieude">
         <option value="hoten">Tìm theo họ tên</option>
         <option value="detai">Tìm theo đề tài</option>
         <option value="masv">Tìm theo Mã sv</option>
     </select>
-    <input type="text" class="form-control" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
+    <input type="text" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
     <button class="btn btn-primary btn-sm" type="submit">Tìm</button>
 
-  </div>
 </form>
 
 <br>
@@ -55,10 +54,14 @@
            <td>{{ student.reviewer }}</td>
 
            <td>
+               {% if user.is_staff %}
                <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+               {% endif %}
            </td>
            <td>
+               {% if user.is_staff %}
              <a href="{% url 'delete_student' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
+               {% endif %}
            </td>
            {% if student.file %}
              <td><a href="{{ student.file.url }}" class="btn btn-primary btn-sm" target="_blank">

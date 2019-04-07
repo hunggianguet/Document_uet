@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Student(models.Model):
-    id = models.IntegerField(primary_key=True, null=False)
+    id = models.AutoField(primary_key=True, null=False)
     id_student= models.IntegerField(null=True)
     name = models.CharField(max_length=300, null=True)
     birth_date = models.DateField(null=True)

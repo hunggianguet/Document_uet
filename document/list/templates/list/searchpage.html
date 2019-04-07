@@ -10,9 +10,16 @@ body{
     </style>
 
 </head>
+{% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if user.is_authenticated %}
 <br>
 <h1 class="home-title">Hệ thống tra cứu khoá luận </h1>
-<br>
       <h2 class="home-title">Trường Đại Học Công Nghệ</h2>
 <br>
 <br>
@@ -21,14 +28,18 @@ body{
 <form class = "input" method="get" >
   <div class="input-group">
     <select name="tieude">
+        <option value="tatca">Tìm theo tất cả</option>
         <option value="hoten">Tìm theo họ tên</option>
         <option value="detai">Tìm theo đề tài</option>
         <option value="masv">Tìm theo Mã sv</option>
     </select>
     <input type="text" class="form-control" name="q" id="id_q" value="{{ query }}" placeholder="Tìm kiếm">
-    <button class="btn btn-primary btn-sm" type="submit">Tìm Kiếm</button>
-
+    <button class="btn btn-success btn-sm" type="submit">Tìm Kiếm</button>
   </div>
 </form>
+{% else %}
+<br>
+    <h4>Bạn chưa đăng nhập. Vui lòng đăng nhập hoặc đăng kí</h4>
+{% endif %}
 
 {% endblock %}
