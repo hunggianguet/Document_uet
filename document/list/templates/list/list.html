@@ -11,6 +11,7 @@
 <form class = "input" method="get" >
 
     <select name="tieude">
+        <option value="tatca">Tìm theo tất cả</option>
         <option value="hoten">Tìm theo họ tên</option>
         <option value="detai">Tìm theo đề tài</option>
         <option value="masv">Tìm theo Mã sv</option>
@@ -20,10 +21,14 @@
 
 </form>
 
-<br>
- <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Khóa Luận Tốt Nghiệp</a>
- <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Nghiên Cứu Khoa Học</a>
-<br>
+<form class = "input" method="get" >
+    <select name="xem" >
+        <option value="nckh">NCKH</option>
+        <option value="kltn">KLTN</option>
+    </select>
+    <button class="btn btn-primary btn-sm" type="submit">Xem</button>
+</form>
+
     <br>
   <table class="table table-hover">
     <thead>
@@ -85,7 +90,7 @@
         {% if i > students.number|add:"-5" %}
             {% if i < students.number|add:"5" %}
                 {% if students.number == i %}
-        <li class="page-item active"><a class="page-link"<span>{{ i }} </span></li></a></li>
+        <li class="page-item active"><a class="page-link"<span>{{ i }} </span></a></li>
                 {% else %}
         <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}">&nbsp;{{ i }}&nbsp;</a></li>
                 {% endif %}
