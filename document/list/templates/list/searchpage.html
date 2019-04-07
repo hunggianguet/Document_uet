@@ -10,6 +10,14 @@ body{
     </style>
 
 </head>
+{% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if user.is_authenticated %}
 <br>
 <h1 class="home-title">Hệ thống tra cứu khoá luận </h1>
       <h2 class="home-title">Trường Đại Học Công Nghệ</h2>
@@ -29,5 +37,9 @@ body{
     <button class="btn btn-success btn-sm" type="submit">Tìm Kiếm</button>
   </div>
 </form>
+{% else %}
+<br>
+    <h4>Bạn chưa đăng nhập. Vui lòng đăng nhập hoặc đăng kí</h4>
+{% endif %}
 
 {% endblock %}

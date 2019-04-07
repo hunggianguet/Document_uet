@@ -11,6 +11,7 @@
         }
 
         background-color:rgb(236,248,236);
+
     </style>
 
   </head>
@@ -25,7 +26,7 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
 
   <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ">
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'display_student' %}">Trang chủ  <span class="sr-only">(current)</span></a>
       </li>
@@ -33,11 +34,18 @@
         <a class="nav-link" href="{% url 'view' %}" >Danh sách</a>
       </li>
       <li class="nav-item">
+        {% if user.is_staff %}
         <a class="nav-link" href="{% url 'upload_fl' %}">Thêm tài liệu</a>
+        {% endif %}
       </li>
     </ul>
   </div>
-  </div>
+        {% if user.is_authenticated %}
+          <p style="color:white;">Xin Chào {{user.username}}, <a href="{% url 'logout' %}" style="color:white;" >Logout</a></p>
+        {% else %}
+          <a href="{% url 'login' %}" style="color:white;" >Đăng nhập/</a>
+          <a href="{% url 'register' %}" style="color:white;" >Đăng kí</a>
+        {% endif %}
 </nav>
 
     <br>

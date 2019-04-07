@@ -4,5 +4,8 @@ from .models import *
 # Register your models here.
 
 @admin.register(Student)
-class Student_Admin(ImportExportModelAdmin):
-    pass
+class Student_Admin(admin.ModelAdmin):
+    search_fields = ['name','id_student']
+    list_filter = ['upload_date']
+    list_display = ['name','upload_date']
+    ordering = ['name','upload_date']
