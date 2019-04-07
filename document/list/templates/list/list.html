@@ -59,10 +59,14 @@
            <td>{{ student.reviewer }}</td>
 
            <td>
+               {% if user.is_staff %}
                <a href="{% url 'edit_info' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Edit</a>
+               {% endif %}
            </td>
            <td>
+               {% if user.is_staff %}
              <a href="{% url 'delete_student' student.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Delete</a>
+               {% endif %}
            </td>
            {% if student.file %}
              <td><a href="{{ student.file.url }}" class="btn btn-primary btn-sm" target="_blank">
