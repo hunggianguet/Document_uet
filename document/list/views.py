@@ -53,6 +53,11 @@ def view(request):
     students = paginator.get_page(page)
 
     if query:
+        if tieude=="tatca":
+            students = Student.objects.filter(Q(name__icontains=query)|Q(topic__icontains=query)|Q(id_student__icontains=query))
+            paginator = Paginator(students, 20)  # Show 20 students per page
+            page = request.GET.get('page')
+            students = paginator.get_page(page)
         if tieude == "hoten":
             students = Student.objects.filter(name__icontains=query)
             paginator = Paginator(students, 20)  # Show 20 students per page
@@ -77,6 +82,11 @@ def kltn(request):
     paginator = Paginator(students, 20)  # Show 20 students per page
     page = request.GET.get('page')
     students = paginator.get_page(page)
+    if tieude == "tatca":
+        students = Student.objects.filter(Q(name__icontains=query) | Q(topic__icontains=query) | Q(id_student__icontains=query))&Student.objects.filter(topic_type__icontains='kltn')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
     if tieude == "hoten":
         students = Student.objects.filter(name__icontains=query)&Student.objects.filter(topic_type__icontains='kltn')
         paginator = Paginator(students, 20)  # Show 20 students per page
@@ -101,6 +111,11 @@ def nckh(request):
     paginator = Paginator(students, 20)  # Show 20 students per page
     page = request.GET.get('page')
     students = paginator.get_page(page)
+    if tieude == "tatca":
+        students = Student.objects.filter(Q(name__icontains=query) | Q(topic__icontains=query) | Q(id_student__icontains=query))&Student.objects.filter(topic_type__icontains='nckh')
+        paginator = Paginator(students, 20)  # Show 20 students per page
+        page = request.GET.get('page')
+        students = paginator.get_page(page)
     if tieude == "hoten":
         students = Student.objects.filter(name__icontains=query)&Student.objects.filter(topic_type__icontains='nckh')
         paginator = Paginator(students, 20)  # Show 20 students per page
