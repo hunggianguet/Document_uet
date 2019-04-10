@@ -23,3 +23,6 @@ class Student(models.Model):
         if self.name == None:
             return " NAME IS NULL"
         return self.name
+
+    class Meta:
+        ordering = [ 'id']

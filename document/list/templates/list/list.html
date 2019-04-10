@@ -1,5 +1,4 @@
 {% extends 'list/base.html' %}
-
 {% block body %}
     <style>
         body{
@@ -7,6 +6,8 @@
 
             }
     </style>
+
+
 
 <form class = "input" method="get" >
 
@@ -21,16 +22,15 @@
 </form>
 
 <br>
- <a href="{% url 'kltn' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Khóa Luận Tốt Nghiệp</a>
- <a href="{% url 'nckh' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Nghiên Cứu Khoa Học</a>
+ <a href="{% url 'kltn' %}{% if request.GET.q %}?q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Khóa Luận Tốt Nghiệp</a>
+ <a href="{% url 'nckh' %}{% if request.GET.q %}?q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Nghiên Cứu Khoa Học</a>
 <br>
     <br>
-  <table class="table table-hover">
+  <table class="table table-hover" id='table'>
     <thead>
-
       <tr>
         <th>STT</th>
-        <th>Họ và tên</th>
+        <th>Họ và Tên</th>
         <th>Đề tài</th>
         <th>Loại</th>
         <th>Cán bộ hướng dẫn</th>
@@ -40,18 +40,17 @@
         <th></th>
       </tr>
     </thead>
-
-   <tbody>
-
+    <tbody>
+        <tr>
      {% for student in students %}
 
-         <tr>
            <td>{{ student.id }}</td>
            <td>{{ student.name }} </td>
            <td>{{ student.topic }}</td>
            <td>{{student.topic_type}}</td>
            <td>{{ student.tutor }}</td>
            <td>{{ student.reviewer }}</td>
+
 
            <td>
                {% if user.is_staff %}
@@ -72,7 +71,6 @@
      {% endfor %}
     </tbody>
   </table>
-
 
 <div>
     <ul class="pagination justify-content-center" >
@@ -107,4 +105,8 @@
         {% endif %}
     </ul>
 </div>
+
 {% endblock %}
+
+
+
