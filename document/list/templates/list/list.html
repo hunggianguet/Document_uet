@@ -29,6 +29,8 @@
     <button class="btn btn-primary btn-sm" type="submit">Xem</button>
 </form>
 
+<a href="{% url 'kltn' %}{% if request.GET.q %}?q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Khóa Luận Tốt Nghiệp</a>
+ <a href="{% url 'nckh' %}{% if request.GET.q %}?q={{ request.GET.q }}&tieude={{ request.GET.tieude }}{% endif %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Sinh Viên Làm Nghiên Cứu Khoa Học</a>
     <br>
   <table class="table table-hover">
     <thead>

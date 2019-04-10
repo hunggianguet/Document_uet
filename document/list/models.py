@@ -17,7 +17,7 @@ class Student(models.Model):
     reviewer = models.CharField(max_length=300, null=True)
     work_unit = models.CharField(max_length=300, null=True)
     file = models.FileField(upload_to='media')
-    upload_date = models.DateTimeField(auto_now_add=True)
+    upload_date = models.IntegerField(null=True)
 
     def __str__(self):
         if self.name == None:
