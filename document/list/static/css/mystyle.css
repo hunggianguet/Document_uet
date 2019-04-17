@@ -25,7 +25,7 @@ body {
     position: absolute;
     top: 600%;
     transform: translate(-50%, -50%);
-    height: 40px;
+    height: 60px;
     border-radius: 4px;
     background-color: aquamarine;
     cursor: pointer;

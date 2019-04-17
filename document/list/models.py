@@ -4,7 +4,8 @@ from django.db import models
 class Student(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     id_student= models.IntegerField(null=True)
-    name = models.CharField(max_length=300, null=True)
+    name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=10, null=True)
     birth_date = models.DateField(null=True)
     academic_year = models.CharField(max_length=300, null=True)
     topic = models.CharField(max_length=100, null=True)
@@ -18,11 +19,3 @@ class Student(models.Model):
     work_unit = models.CharField(max_length=300, null=True)
     file = models.FileField(upload_to='media')
     upload_date = models.IntegerField(null=True)
-
-    def __str__(self):
-        if self.name == None:
-            return " NAME IS NULL"
-        return self.name
-
-    class Meta:
-        ordering = [ 'id']
