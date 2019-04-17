@@ -67,9 +67,6 @@ def kltn(request):
     query = request.GET.get("q")
     students = Student.objects.filter(topic_type__icontains='KLTN')
     tieude = request.GET.get("tieude")
-    paginator = Paginator(students, 20)  # Show 20 students per page
-    page = request.GET.get('page')
-    students = paginator.get_page(page)
     if tieude == "tatca":
         students = Student.objects.filter(Q(name__icontains=query) | Q(topic__icontains=query) | Q(id_student__icontains=query))&Student.objects.filter(topic_type__icontains='kltn')
 
@@ -90,9 +87,6 @@ def nckh(request):
     query = request.GET.get("q")
     students = Student.objects.filter(topic_type__icontains='NCKH')
     tieude = request.GET.get("tieude")
-    paginator = Paginator(students, 20)  # Show 20 students per page
-    page = request.GET.get('page')
-    students = paginator.get_page(page)
     if tieude == "tatca":
         students = Student.objects.filter(Q(name__icontains=query) | Q(topic__icontains=query) | Q(id_student__icontains=query))&Student.objects.filter(topic_type__icontains='nckh')
 
@@ -105,7 +99,7 @@ def nckh(request):
     if tieude == "masv":
         students = Student.objects.filter(id_student__icontains=query)&Student.objects.filter(topic_type__icontains='NCKH')
 
- 
+
     return render(request, 'list/list.html', {'students': students})
 
 @staff_member_required(login_url='/list')
