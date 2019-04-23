@@ -12,5 +12,6 @@ urlpatterns = [
     path('list/delete/<int:pk>', delete_student, name="delete_student"),
     path('list/upload_fl', upload_fl, name="upload_fl"),
     path('register',register,name='register'),
+    path('ajax',ajax,name='ajax'),
 
 ]

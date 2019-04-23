@@ -11,6 +11,8 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
+from django.http import HttpResponse
+from django.core import serializers
 # Create your views here.
 
 def display_student(request):
@@ -99,7 +101,7 @@ def nckh(request):
     if tieude == "masv":
         students = Student.objects.filter(id_student__icontains=query)&Student.objects.filter(topic_type__icontains='NCKH')
 
-
+ 
     return render(request, 'list/list.html', {'students': students})
 
 @staff_member_required(login_url='/list')
@@ -155,3 +157,9 @@ def register(request):
         form = UserCreationForm()
 
     return render(request,'registration/register.html',{'form':form})
+
+def ajax(request):
+    object_list = Student.objects.all() #or any kind of queryset
+    json = serializers.serialize('json', object_list)
+    return HttpResponse(json, content_type='application/json')
+

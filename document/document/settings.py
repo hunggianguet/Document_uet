@@ -125,9 +125,9 @@ DATE_FORMAT = 'd/m/Y'
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'list/media')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'list/'
 
 LOGIN_REDIRECT_URL ='/list'
 
